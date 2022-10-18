@@ -1,4 +1,7 @@
 import React from "react";
+import Todo from "../models/todos";
+import TodoItem from "./TodoItem";
+import classes from "./Todos.module.css";
 
 // FC(Functional component)는 @types/react package에 정의된 type
 // 제너릭 타입을 사용하기 전에 이미 FC(제너릭타입)를 사용함
@@ -9,11 +12,11 @@ import React from "react";
 // => 리액트 & 타입스크립트로 함수형 컴포넌트를 만드려면!!!
 // React.FC 타입을 함수형 컴포넌트의 상수 옆에 사용! 그 옆의  <> 안에 필요한 형태의 props를 정의! (프로퍼티 객체 타입)
 
-const Todos: React.FC<{ items: string[] }> = (props) => {
+const Todos: React.FC<{ items: Todo[] }> = (props) => {
   return (
-    <ul>
+    <ul className={classes.todos}>
       {props.items.map((item) => (
-        <li key={item}>{item}</li>
+        <TodoItem key={item.id} text={item.text} />
       ))}
     </ul>
   );
