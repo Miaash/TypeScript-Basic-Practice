@@ -38,6 +38,9 @@ const TodosContextProvider: React.FC<Child> = (props) => {
     });
   };
 
+  // value는 객체이므로 리렌더링의 주범이 된다.
+  // useMemo로 캐싱해두지 않으면 나중에 이 데이터를 쓰는 모든 컴포넌트가 매번 리렌더링 됨.
+  // useMemo는 불필요한 렌더링을 방지함. (컴포넌트 성능 최적화)
   const contextValue: TodosContextObj = {
     items: todos,
     addTodo: addTodoHandler,
